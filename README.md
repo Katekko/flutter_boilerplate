@@ -4,12 +4,12 @@ This boilerplate will help you to start your project in the right way.
 
 ## Features
 
-- Using Bloc Pattern to management states of your application
-- Using HTTP restfull to comunicate to your backend/gatway
-- Using Named Routes to transite between screens
-- Following all the recomendations and patterns of dart
+- Using Bloc Pattern to manage states of your application
+- Using HTTP restful to communicate to your backend/gateway
+- Using Named Routes to transit between screens
+- Following all the recommendations and patterns of dart
 -- https://dart.dev/guides/language/effective-dart/style
-- Using the google analizer to check if all code is ok
+- Using the google analyzer to check if all code is ok
 
 ## Getting Started
 
