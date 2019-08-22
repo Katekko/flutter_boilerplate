@@ -1,16 +1,16 @@
-# flutter_boilerplate
+# Boilerplate for Flutter project
 
-A new Flutter project.
+This boilerplate will help you to start your project in the right way.
+
+## Features
+
+- Using Bloc Pattern to management states of your application
+- Using HTTP restfull to comunicate to your backend/gatway
+- Using Named Routes to transite between screens
+- Following all the recomendations and patterns of dart
+-- https://dart.dev/guides/language/effective-dart/style
+- Using the google analizer to check if all code is ok
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+TODO: Explan how to user the architeture and how to create new things
