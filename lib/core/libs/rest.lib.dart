@@ -26,7 +26,7 @@ class RestCoreLib {
         throw Exception('Falha ao obter dados');
       }
     } catch (e) {
-      throw (e);
+      throw Exception(e);
     }
   }
 
@@ -51,7 +51,7 @@ class RestCoreLib {
         throw Exception('Falha ao obter dados');
       }
     } catch (e) {
-      throw (e);
+      throw Exception(e);
     }
   }
 

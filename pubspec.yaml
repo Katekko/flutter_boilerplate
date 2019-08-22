@@ -16,6 +16,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+    
+  linter: ^0.1.96
+  pedantic: ^1.0.0
 
 flutter:
 

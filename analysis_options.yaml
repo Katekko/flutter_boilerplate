@@ -1,0 +1,15 @@
+include: package:pedantic/analysis_options.yaml
+
+linter:
+  rules:
+   always_declare_return_types: true
+   camel_case_types: true
+   empty_constructor_bodies: true
+   annotate_overrides: true
+   avoid_init_to_null: true
+   constant_identifier_names: true
+   one_member_abstracts: true
+   slash_for_doc_comments: true
+   sort_constructors_first: false
+   unnecessary_brace_in_string_interps: true
+    

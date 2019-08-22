@@ -3,14 +3,14 @@ import 'package:flutter_boilerplate/ui/screens/home/home.screen.dart';
 import 'package:flutter_boilerplate/ui/screens/test_screen/test_screen.screen.dart';
 
 enum _RouteErrorType {
-  INEXISTENT_ROUTE,
-  ARGUMENT_TYPE_WRONG,
+  inexistentRout,
+  argumentTypeWrong,
 }
 
 // NOTE: To do more animations transitions look at: https://medium.com/flutter-community/everything-you-need-to-know-about-flutter-page-route-transition-9ef5c1b32823
 class NavigationLib {
   static Route<dynamic> generateRoutes(RouteSettings settings) {
-    final args = settings.arguments;
+    // final args = settings.arguments;
 
     switch (settings.name) {
       case '/':
@@ -19,7 +19,7 @@ class NavigationLib {
         return _SlideToLeftRoute(page: TestScreenScreen());
       default:
         return _errorHandler(
-          error: _RouteErrorType.INEXISTENT_ROUTE,
+          error: _RouteErrorType.inexistentRout,
           received: settings.name,
         );
     }
@@ -54,14 +54,14 @@ class NavigationLib {
     }
 
     switch (error) {
-      case _RouteErrorType.ARGUMENT_TYPE_WRONG:
+      case _RouteErrorType.argumentTypeWrong:
         return _pageErro(
           title: 'Argument Error',
           bodyText:
               'Error while passing value to a new route, expected $expectedValue and received $received',
         );
         break;
-      case _RouteErrorType.INEXISTENT_ROUTE:
+      case _RouteErrorType.inexistentRout:
         return _pageErro(
           title: 'Route not found',
           bodyText:

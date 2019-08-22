@@ -41,14 +41,10 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _ActionButton extends StatelessWidget {
+  const _ActionButton({this.label, this.textSnackBar, this.callback});
   final String label;
   final String textSnackBar;
   final Function callback;
-  const _ActionButton({
-    this.label,
-    this.textSnackBar,
-    this.callback,
-  });
 
   @override
   Widget build(BuildContext context) {
