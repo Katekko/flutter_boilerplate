@@ -1,22 +1,43 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/core/blocs/client.bloc.dart';
+import 'package:flutter_boilerplate/core/models/client.model.dart';
+import 'package:flutter_boilerplate/ui/screens/client_details/client_details.screen.dart';
 import 'package:flutter_boilerplate/ui/screens/home/home.screen.dart';
-import 'package:flutter_boilerplate/ui/screens/test_screen/test_screen.screen.dart';
 
 enum _RouteErrorType {
   inexistentRout,
-  argumentTypeWrong,
+  wrongArgumentType,
 }
 
 // NOTE: To do more animations transitions look at: https://medium.com/flutter-community/everything-you-need-to-know-about-flutter-page-route-transition-9ef5c1b32823
 class NavigationLib {
   static Route<dynamic> generateRoutes(RouteSettings settings) {
-    // final args = settings.arguments;
+    final args = settings.arguments;
 
     switch (settings.name) {
       case '/':
-        return _ScaleRoute(page: HomeScreen());
-      case '/test-screen':
-        return _SlideToLeftRoute(page: TestScreenScreen());
+        return _ScaleRoute(
+          page: BlocProvider(
+            blocs: [Bloc((i) => ClientBloc())],
+            child: HomeScreen(),
+          ),
+        );
+      case '/client-details':
+        if (args is ClientModel) {
+          return _SlideToLeftRoute(
+            page: ClientDatailsScreen(
+              client: args,
+            ),
+          );
+        } else {
+          return _errorHandler(
+            error: _RouteErrorType.wrongArgumentType,
+            expectedValue: 'ClientModel',
+            received: args,
+          );
+        }
+        break;
       default:
         return _errorHandler(
           error: _RouteErrorType.inexistentRout,
@@ -54,11 +75,11 @@ class NavigationLib {
     }
 
     switch (error) {
-      case _RouteErrorType.argumentTypeWrong:
+      case _RouteErrorType.wrongArgumentType:
         return _pageErro(
           title: 'Argument Error',
           bodyText:
-              'Error while passing value to a new route, expected $expectedValue and received $received',
+              'Error while passing value to a new router, \n expected $expectedValue \n and received $received',
         );
         break;
       case _RouteErrorType.inexistentRout:

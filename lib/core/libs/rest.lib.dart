@@ -1,19 +1,21 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_boilerplate/config.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-class RestCoreLib {
-  static final JsonDecoder _decoder = JsonDecoder();
+class RestLib {
+  final JsonDecoder _decoder = JsonDecoder();
+  final ConfigEnvironments _config = ConfigEnvironments();
 
-  static Future<dynamic> get(
-    String url, {
+  Future<dynamic> get({
+    @required String url,
     mimeType = 'json',
   }) async {
     try {
-      final ambiente = ConfigEnvironments.getEnvironments();
+      final ambiente = _config.getEnvironments();
       final http.Response response = await http.get(
         ambiente['url'] + url,
         headers: await _getHeaders(mimeType),
@@ -30,13 +32,13 @@ class RestCoreLib {
     }
   }
 
-  static Future<dynamic> post(
-    String url, {
+  Future<dynamic> post({
+    @required String url,
     body,
     mimeType = 'json',
   }) async {
     try {
-      final ambiente = ConfigEnvironments.getEnvironments();
+      final ambiente = _config.getEnvironments();
       final http.Response response = await http.post(
         ambiente['url'] + url,
         body: body,
@@ -55,18 +57,17 @@ class RestCoreLib {
     }
   }
 
-  static bool _isSuccessRequest(int httpCode) {
+  bool _isSuccessRequest(int httpCode) {
     return httpCode >= 200 && httpCode < 300;
   }
 
-  static Future<Map<String, String>> _getHeaders(String mimetype) async {
+  Future<Map<String, String>> _getHeaders(String mimetype) async {
     final _prefs = await SharedPreferences.getInstance();
-    final _token = _prefs.getString('token');
 
-    Map<String, String> headers = new Map<String, String>();
-    headers.addAll({"Accept": "application/" + mimetype});
-    if (_token != null) {
-      headers.addAll({"Authorization": "bearer " + _token});
+    Map<String, String> headers = Map<String, String>();
+    headers.addAll({'Accept': 'application/' + mimetype});
+    if (_prefs.containsKey('token')) {
+      headers.addAll({'Authorization': 'bearer ' + _prefs.getString('token')});
     }
 
     return Future.value(headers);
