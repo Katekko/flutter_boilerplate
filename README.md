@@ -26,4 +26,4 @@ This boilerplate will help you to start your project in the right way.
 
 ## Getting Started
 
-TODO: Explain how to user the architeture and how to create new things
+TODO: Explain how to use the architeture and how to create new things
