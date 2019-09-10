@@ -16,7 +16,7 @@ This boilerplate will help you to start your project in the right way.
 
 - [shared_preferences](https://pub.dev/packages/shared_preferences)
 - [http](https://pub.dev/packages/http)
-- [rxdart](thttps://pub.dev/packages/rxdart)
+- [rxdart](https://pub.dev/packages/rxdart)
 - [bloc_pattern](https://pub.dev/packages/bloc_pattern)
 - [linter](https://pub.dev/packages/linter)
 - [pedantic](https://pub.dev/packages/pedantic)
