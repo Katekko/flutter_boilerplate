@@ -38,4 +38,4 @@ Firstly clone this repository.
 So follow this steps:
  - Copy the file named config.example.dart and rename it to config.example;
  - Now you ready to go, just start the project and see if is all ok;
- - ~Soon you will can follow some tutorials to create new things around the project, like shared widgets, new routes, new models and so on.~
+ - Soon you will can follow some tutorials to create new things around the project, like shared widgets, new routes, new models and so on.
