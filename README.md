@@ -14,15 +14,14 @@ This boilerplate will help you to start your project in the right way.
 
 ## Essentials Libs
 
-- shared_preferences
-- http
-- rxdart
-- bloc_pattern (using this, but is it still in development)
-
-- linter
-- pedantic
-- build_runner
-- json_serializable
+- [shared_preferences](https://pub.dev/packages/shared_preferences)
+- [http](https://pub.dev/packages/http)
+- [rxdart](thttps://pub.dev/packages/rxdart)
+- [bloc_pattern](https://pub.dev/packages/bloc_pattern)
+- [linter](https://pub.dev/packages/linter)
+- [pedantic](https://pub.dev/packages/pedantic)
+- [build_runner](https://pub.dev/packages/build_runner)
+- [json_serializable](https://pub.dev/packages/json_serializable)
 
 ## Roadmap
 
