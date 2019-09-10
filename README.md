@@ -24,10 +24,18 @@ This boilerplate will help you to start your project in the right way.
 - build_runner
 - json_serializable
 
-## Getting Started
+## Roadmap
 
 - TODO: Explain how to use the architeture and how to create new things
 - TODO: Internalization
 - TODO: Authentication with JWT (JSON WEB TOKEN)
 - TODO: Notifications
 - TODO: Working with SignalR (Real Time Comunication) (I will create another branch to use this solution: master/signalR)
+
+## Getting Started
+
+Firstly clone this repository.
+So follow this steps:
+ - Copy the file named config.example.dart and rename it to config.example;
+ - Now you ready to go, just start the project and see if is all ok;
+ - ~Soon you will can follow some tutorials to create new things around the project, like shared widgets, new routes, new models and so on.~
