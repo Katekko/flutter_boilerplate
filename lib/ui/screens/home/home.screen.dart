@@ -1,52 +1,70 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/core/blocs/client.bloc.dart';
+import 'package:flutter_boilerplate/core/blocs/home.bloc.dart';
+
 import 'package:flutter_boilerplate/core/libs/snackbar.lib.dart';
 import 'package:flutter_boilerplate/core/models/client.model.dart';
+import 'package:flutter_boilerplate/ui/shared/loading.widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final HomeBloc _clientBloc = BlocProvider.tag('HomeBloc').getBloc<HomeBloc>();
+  
+  @override
+  void initState() {
+    super.initState();
+    _clientBloc.getAllClients();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Screen'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            _ActionSnackbarButton(
-              label: 'Show SnackBar success',
-              textSnackBar: 'Successsss',
-              callback: SnackBarLib.showSuccessSnackBar,
-            ),
-            _ActionSnackbarButton(
-              label: 'Show SnackBar warning',
-              textSnackBar: 'Warningggg',
-              callback: SnackBarLib.showWarningSnackBar,
-            ),
-            _ActionSnackbarButton(
-              label: 'Show SnackBar error',
-              textSnackBar: 'Errorrr',
-              callback: SnackBarLib.showErrorSnackBar,
-            ),
-            RaisedButton(
-              onPressed: () => Navigator.of(context).pushNamed('/test-screen'),
-              child: Text('Navigate to another page'),
-            ),
-            _TotalClientsText(),
-          ],
+    return LoadingWidget(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Home Screen'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              _ActionSnackbarButtonWidget(
+                label: 'Show SnackBar success',
+                textSnackBar: 'Successsss',
+                callback: SnackBarLib.showSuccessSnackBar,
+              ),
+              _ActionSnackbarButtonWidget(
+                label: 'Show SnackBar warning',
+                textSnackBar: 'Warningggg',
+                callback: SnackBarLib.showWarningSnackBar,
+              ),
+              _ActionSnackbarButtonWidget(
+                label: 'Show SnackBar error',
+                textSnackBar: 'Errorrr',
+                callback: SnackBarLib.showErrorSnackBar,
+              ),
+              RaisedButton(
+                onPressed: () =>
+                    Navigator.of(context).pushNamed('/test-screen'),
+                child: Text('Navigate to another page'),
+              ),
+              _TotalClientsTextWidget(),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class _ActionSnackbarButton extends StatelessWidget {
+class _ActionSnackbarButtonWidget extends StatelessWidget {
   final String label;
   final String textSnackBar;
   final Function callback;
-  const _ActionSnackbarButton({
+  const _ActionSnackbarButtonWidget({
     @required this.label,
     @required this.textSnackBar,
     @required this.callback,
@@ -64,12 +82,11 @@ class _ActionSnackbarButton extends StatelessWidget {
   }
 }
 
-class _TotalClientsText extends StatelessWidget {
-  final ClientBloc _clientBloc = BlocProvider.getBloc<ClientBloc>();
+class _TotalClientsTextWidget extends StatelessWidget {
+  final HomeBloc _clientBloc = BlocProvider.tag('HomeBloc').getBloc<HomeBloc>();
 
   @override
   Widget build(BuildContext context) {
-    _clientBloc.getAllClients();
     return StreamBuilder<List<ClientModel>>(
       stream: _clientBloc.clientsStream,
       builder: (_, snapshot) {
@@ -84,8 +101,10 @@ class _TotalClientsText extends StatelessWidget {
               RaisedButton(
                 onPressed: () {
                   // TODO: Choose one client here. e.g snapshot.data[0]
-                  Navigator.of(context)
-                      .pushNamed('/client-details', arguments: null);
+                  Navigator.of(context).pushNamed(
+                    '/client-details',
+                    arguments: snapshot.data[0],
+                  );
                 },
                 child: Text('Navigate to client details'),
               ),

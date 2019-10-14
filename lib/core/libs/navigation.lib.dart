@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/core/blocs/client.bloc.dart';
+import 'package:flutter_boilerplate/core/blocs/home.bloc.dart';
+import 'package:flutter_boilerplate/core/blocs/loading.bloc.dart';
 import 'package:flutter_boilerplate/core/models/client.model.dart';
 import 'package:flutter_boilerplate/ui/screens/client_details/client_details.screen.dart';
 import 'package:flutter_boilerplate/ui/screens/home/home.screen.dart';
@@ -19,7 +20,11 @@ class NavigationLib {
       case '/':
         return _ScaleRoute(
           page: BlocProvider(
-            blocs: [Bloc((i) => ClientBloc())],
+            tagText: 'HomeBloc',
+            blocs: [
+              Bloc((i) => HomeBloc()),
+              Bloc((i) => LoadingBloc()),
+            ],
             child: HomeScreen(),
           ),
         );

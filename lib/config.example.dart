@@ -2,10 +2,10 @@
 
 class ConfigEnvironments {
   // HINT: Change the current environments to change your current endPoint
-  final String _currentEnvironments = 'local';
+  final String _currentEnvironments = 'dev';
   List<Map<String, String>> _availableEnvironments = [
     {'env': 'local', 'url': 'http://your.ip.here:5000/api/'},
-    {'env': 'dev', 'url': ''},
+    {'env': 'dev', 'url': 'https://reqres.in/api/'},
     {'env': 'hom', 'url': ''},
     {'env': 'prod', 'url': ''},
   ];

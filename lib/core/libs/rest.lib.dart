@@ -1,20 +1,24 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_boilerplate/config.dart';
+import 'package:flutter_boilerplate/core/blocs/loading.bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RestLib {
   final JsonDecoder _decoder = JsonDecoder();
   final ConfigEnvironments _config = ConfigEnvironments();
+  final LoadingBloc _loadingBloc = BlocProvider.tag('HomeBloc').getBloc<LoadingBloc>();
 
   Future<dynamic> get({
     @required String url,
     mimeType = 'json',
   }) async {
     try {
+      _loadingBloc.isLoading(isLoading: true);
       final ambiente = _config.getEnvironments();
       final http.Response response = await http.get(
         ambiente['url'] + url,
@@ -29,6 +33,8 @@ class RestLib {
       }
     } catch (e) {
       throw Exception(e);
+    } finally {
+      _loadingBloc.isLoading(isLoading: false);
     }
   }
 

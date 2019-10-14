@@ -5,7 +5,7 @@ import 'package:flutter_boilerplate/core/models/client.model.dart';
 import 'package:flutter_boilerplate/core/services/client.service.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ClientBloc extends BlocBase {
+class HomeBloc extends BlocBase {
   final _clientsController = BehaviorSubject<List<ClientModel>>();
   Observable<List<ClientModel>> get clientsStream => _clientsController.stream;
 

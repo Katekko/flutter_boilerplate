@@ -8,29 +8,31 @@ class ClientDatailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Client Details'),
+        centerTitle: true,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            _LabelValue(
-              label: 'Name',
-              value: client.name,
+            _LabelValueWidget(
+              label: 'First Name:',
+              value: client.first_name,
             ),
             SizedBox(height: 20),
-            _LabelValue(
-              label: 'E-mail',
+            _LabelValueWidget(
+              label: 'E-mail:',
               value: client.email,
             ),
             SizedBox(height: 20),
-            _LabelValue(
-              label: 'User Name',
-              value: client.username,
+            _LabelValueWidget(
+              label: 'Last Name:',
+              value: client.last_name,
             ),
             SizedBox(height: 20),
-            _LabelValue(
-              label: 'Web Site',
-              value: client.website,
-            ),
+            _AvatarWidget(avatar: client.avatar),
             SizedBox(height: 20),
           ],
         ),
@@ -39,18 +41,40 @@ class ClientDatailsScreen extends StatelessWidget {
   }
 }
 
-class _LabelValue extends StatelessWidget {
+class _LabelValueWidget extends StatelessWidget {
   final String label, value;
-  const _LabelValue({@required this.label, @required this.value});
+  const _LabelValueWidget({@required this.label, @required this.value});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * .7,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          SizedBox(
+            width: MediaQuery.of(context).size.width * .2,
+            child: Text(label),
+          ),
+          SizedBox(width: 30),
+          Text(value),
+        ],
+      ),
+    );
+  }
+}
+
+class _AvatarWidget extends StatelessWidget {
+  final String avatar;
+  const _AvatarWidget({this.avatar});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(label),
-        SizedBox(width: 30),
-        Text(value),
+        Text('Avatar'),
+        Image.network(avatar),
       ],
     );
   }
